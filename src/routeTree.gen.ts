@@ -9,38 +9,166 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TutoriaisRouteImport } from './routes/tutoriais'
+import { Route as SimuladorRouteImport } from './routes/simulador'
+import { Route as ExerciciosRouteImport } from './routes/exercicios'
+import { Route as DocumentacaoRouteImport } from './routes/documentacao'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as TutoriaisIndexRouteImport } from './routes/tutoriais.index'
+import { Route as ExerciciosIndexRouteImport } from './routes/exercicios.index'
+import { Route as TutoriaisSlugRouteImport } from './routes/tutoriais.$slug'
+import { Route as ExerciciosSlugRouteImport } from './routes/exercicios.$slug'
 
+const TutoriaisRoute = TutoriaisRouteImport.update({
+  id: '/tutoriais',
+  path: '/tutoriais',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SimuladorRoute = SimuladorRouteImport.update({
+  id: '/simulador',
+  path: '/simulador',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExerciciosRoute = ExerciciosRouteImport.update({
+  id: '/exercicios',
+  path: '/exercicios',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DocumentacaoRoute = DocumentacaoRouteImport.update({
+  id: '/documentacao',
+  path: '/documentacao',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TutoriaisIndexRoute = TutoriaisIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => TutoriaisRoute,
+} as any)
+const ExerciciosIndexRoute = ExerciciosIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ExerciciosRoute,
+} as any)
+const TutoriaisSlugRoute = TutoriaisSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => TutoriaisRoute,
+} as any)
+const ExerciciosSlugRoute = ExerciciosSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => ExerciciosRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/documentacao': typeof DocumentacaoRoute
+  '/exercicios': typeof ExerciciosRouteWithChildren
+  '/simulador': typeof SimuladorRoute
+  '/tutoriais': typeof TutoriaisRouteWithChildren
+  '/exercicios/$slug': typeof ExerciciosSlugRoute
+  '/tutoriais/$slug': typeof TutoriaisSlugRoute
+  '/exercicios/': typeof ExerciciosIndexRoute
+  '/tutoriais/': typeof TutoriaisIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/documentacao': typeof DocumentacaoRoute
+  '/simulador': typeof SimuladorRoute
+  '/exercicios/$slug': typeof ExerciciosSlugRoute
+  '/tutoriais/$slug': typeof TutoriaisSlugRoute
+  '/exercicios': typeof ExerciciosIndexRoute
+  '/tutoriais': typeof TutoriaisIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/documentacao': typeof DocumentacaoRoute
+  '/exercicios': typeof ExerciciosRouteWithChildren
+  '/simulador': typeof SimuladorRoute
+  '/tutoriais': typeof TutoriaisRouteWithChildren
+  '/exercicios/$slug': typeof ExerciciosSlugRoute
+  '/tutoriais/$slug': typeof TutoriaisSlugRoute
+  '/exercicios/': typeof ExerciciosIndexRoute
+  '/tutoriais/': typeof TutoriaisIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/documentacao'
+    | '/exercicios'
+    | '/simulador'
+    | '/tutoriais'
+    | '/exercicios/$slug'
+    | '/tutoriais/$slug'
+    | '/exercicios/'
+    | '/tutoriais/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/documentacao'
+    | '/simulador'
+    | '/exercicios/$slug'
+    | '/tutoriais/$slug'
+    | '/exercicios'
+    | '/tutoriais'
+  id:
+    | '__root__'
+    | '/'
+    | '/documentacao'
+    | '/exercicios'
+    | '/simulador'
+    | '/tutoriais'
+    | '/exercicios/$slug'
+    | '/tutoriais/$slug'
+    | '/exercicios/'
+    | '/tutoriais/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  DocumentacaoRoute: typeof DocumentacaoRoute
+  ExerciciosRoute: typeof ExerciciosRouteWithChildren
+  SimuladorRoute: typeof SimuladorRoute
+  TutoriaisRoute: typeof TutoriaisRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/tutoriais': {
+      id: '/tutoriais'
+      path: '/tutoriais'
+      fullPath: '/tutoriais'
+      preLoaderRoute: typeof TutoriaisRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/simulador': {
+      id: '/simulador'
+      path: '/simulador'
+      fullPath: '/simulador'
+      preLoaderRoute: typeof SimuladorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/exercicios': {
+      id: '/exercicios'
+      path: '/exercicios'
+      fullPath: '/exercicios'
+      preLoaderRoute: typeof ExerciciosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/documentacao': {
+      id: '/documentacao'
+      path: '/documentacao'
+      fullPath: '/documentacao'
+      preLoaderRoute: typeof DocumentacaoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,22 +176,72 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/tutoriais/': {
+      id: '/tutoriais/'
+      path: '/'
+      fullPath: '/tutoriais/'
+      preLoaderRoute: typeof TutoriaisIndexRouteImport
+      parentRoute: typeof TutoriaisRoute
+    }
+    '/exercicios/': {
+      id: '/exercicios/'
+      path: '/'
+      fullPath: '/exercicios/'
+      preLoaderRoute: typeof ExerciciosIndexRouteImport
+      parentRoute: typeof ExerciciosRoute
+    }
+    '/tutoriais/$slug': {
+      id: '/tutoriais/$slug'
+      path: '/$slug'
+      fullPath: '/tutoriais/$slug'
+      preLoaderRoute: typeof TutoriaisSlugRouteImport
+      parentRoute: typeof TutoriaisRoute
+    }
+    '/exercicios/$slug': {
+      id: '/exercicios/$slug'
+      path: '/$slug'
+      fullPath: '/exercicios/$slug'
+      preLoaderRoute: typeof ExerciciosSlugRouteImport
+      parentRoute: typeof ExerciciosRoute
+    }
   }
 }
 
+interface ExerciciosRouteChildren {
+  ExerciciosSlugRoute: typeof ExerciciosSlugRoute
+  ExerciciosIndexRoute: typeof ExerciciosIndexRoute
+}
+
+const ExerciciosRouteChildren: ExerciciosRouteChildren = {
+  ExerciciosSlugRoute: ExerciciosSlugRoute,
+  ExerciciosIndexRoute: ExerciciosIndexRoute,
+}
+
+const ExerciciosRouteWithChildren = ExerciciosRoute._addFileChildren(
+  ExerciciosRouteChildren,
+)
+
+interface TutoriaisRouteChildren {
+  TutoriaisSlugRoute: typeof TutoriaisSlugRoute
+  TutoriaisIndexRoute: typeof TutoriaisIndexRoute
+}
+
+const TutoriaisRouteChildren: TutoriaisRouteChildren = {
+  TutoriaisSlugRoute: TutoriaisSlugRoute,
+  TutoriaisIndexRoute: TutoriaisIndexRoute,
+}
+
+const TutoriaisRouteWithChildren = TutoriaisRoute._addFileChildren(
+  TutoriaisRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  DocumentacaoRoute: DocumentacaoRoute,
+  ExerciciosRoute: ExerciciosRouteWithChildren,
+  SimuladorRoute: SimuladorRoute,
+  TutoriaisRoute: TutoriaisRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
