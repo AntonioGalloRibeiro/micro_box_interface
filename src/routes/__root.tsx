@@ -77,11 +77,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Micro-Box — Aprenda GPIO com Python" },
+      { name: "description", content: "Plataforma educacional para a biblioteca Micro-Box: documentação, tutoriais, simulador visual de GPIO e exercícios interativos." },
+      { name: "author", content: "Projeto Micro-Box" },
+      { property: "og:title", content: "Micro-Box — Aprenda GPIO com Python" },
+      { property: "og:description", content: "Aprenda a controlar GPIOs com Python usando a biblioteca Micro-Box. Documentação, tutoriais e simulador visual." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
@@ -90,6 +90,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         rel: "stylesheet",
         href: appCss,
+      },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap",
       },
     ],
   }),
@@ -118,8 +124,81 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <div className="min-h-screen flex flex-col bg-background text-foreground font-sans">
+        <SiteHeader />
+        <main className="flex-1">
+          {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+          <Outlet />
+        </main>
+        <SiteFooter />
+      </div>
     </QueryClientProvider>
+  );
+}
+
+function SiteHeader() {
+  const links = [
+    { to: "/", label: "Início" },
+    { to: "/documentacao", label: "Documentação" },
+    { to: "/tutoriais", label: "Tutoriais" },
+    { to: "/simulador", label: "Simulador" },
+    { to: "/exercicios", label: "Exercícios" },
+  ] as const;
+  return (
+    <header className="sticky top-0 z-40 border-b border-border bg-background/85 backdrop-blur supports-[backdrop-filter]:bg-background/70">
+      <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between gap-6 px-4">
+        <Link to="/" className="flex items-center gap-2 font-display text-lg font-bold tracking-tight">
+          <span className="grid h-8 w-8 place-items-center rounded-lg bg-[var(--gradient-hero)] text-primary-foreground shadow-[var(--shadow-card)]">
+            μ
+          </span>
+          <span>Micro-Box</span>
+        </Link>
+        <nav className="hidden items-center gap-1 md:flex">
+          {links.map((l) => (
+            <Link
+              key={l.to}
+              to={l.to}
+              activeOptions={{ exact: l.to === "/" }}
+              activeProps={{ className: "bg-secondary text-secondary-foreground" }}
+              className="rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
+            >
+              {l.label}
+            </Link>
+          ))}
+        </nav>
+        <Link
+          to="/simulador"
+          className="rounded-md bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-card)] transition hover:opacity-90"
+        >
+          Abrir simulador
+        </Link>
+      </div>
+      <nav className="flex gap-1 overflow-x-auto border-t border-border px-4 py-2 md:hidden">
+        {links.map((l) => (
+          <Link
+            key={l.to}
+            to={l.to}
+            activeOptions={{ exact: l.to === "/" }}
+            activeProps={{ className: "bg-secondary text-secondary-foreground" }}
+            className="rounded-md px-3 py-1.5 text-xs font-medium text-muted-foreground hover:text-foreground"
+          >
+            {l.label}
+          </Link>
+        ))}
+      </nav>
+    </header>
+  );
+}
+
+function SiteFooter() {
+  return (
+    <footer className="border-t border-border bg-muted/40">
+      <div className="mx-auto flex w-full max-w-6xl flex-col gap-2 px-4 py-8 text-sm text-muted-foreground md:flex-row md:items-center md:justify-between">
+        <p>
+          <span className="font-display font-semibold text-foreground">Micro-Box</span> · Projeto educacional para ensino de GPIO com Python.
+        </p>
+        <p>Biblioteca em PT-BR construída sobre <code className="rounded bg-secondary px-1.5 py-0.5 font-mono text-xs">gpiod</code>.</p>
+      </div>
+    </footer>
   );
 }
