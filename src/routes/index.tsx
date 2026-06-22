@@ -25,22 +25,22 @@ function Index() {
     <div>
       <section
         className="relative overflow-hidden border-b border-border"
-        style={{ background: "var(--gradient-hero)" }}
+        style={{ background: "#00BFFF" }}
       >
         <div className="mx-auto grid w-full max-w-6xl gap-10 px-4 py-20 text-primary-foreground md:grid-cols-[1.1fr_1fr] md:py-28">
           <div className="flex flex-col justify-center gap-6">
-            <span className="w-fit rounded-full bg-white/15 px-3 py-1 text-xs font-semibold uppercase tracking-wider backdrop-blur">
-              Projeto Micro-Box · biblioteca em PT-BR
+            <span className="w-fit rounded-full bg-white/20 px-3 py-1 text-xs font-semibold uppercase tracking-wider backdrop-blur">
+              Projeto Micro-Box · TV Boxes reutilizadas como hardware educacional
             </span>
             <h1 className="font-display text-4xl font-extrabold leading-tight tracking-tight md:text-6xl">
-              Aprenda <span className="underline decoration-white/40 underline-offset-4">GPIO</span> com Python, sem precisar de hardware.
+              Prepare-se para usar a <span className="underline decoration-white/50 underline-offset-4">Micro-Box</span> antes de colocar a mão no hardware.
             </h1>
-            <p className="max-w-xl text-lg text-white/90">
-              Documentação, tutoriais e um simulador visual de pinos GPIO para apoiar estudantes iniciantes na biblioteca <code className="rounded bg-white/15 px-1.5 py-0.5 font-mono text-sm">biblioteca_microbox</code>.
+            <p className="max-w-xl text-lg text-white/95">
+              Você vai trabalhar com TV Boxes reutilizadas como plataforma de GPIO. Aqui, no simulador, você experimenta o código da biblioteca <code className="rounded bg-white/20 px-1.5 py-0.5 font-mono text-sm">biblioteca_microbox</code> e entende o comportamento dos pinos <strong>antes</strong> da prática em laboratório.
             </p>
             <div className="flex flex-wrap gap-3">
               <Link to="/simulador" className="rounded-md bg-white px-5 py-3 text-sm font-semibold text-foreground shadow-[var(--shadow-card)] transition hover:bg-white/90">
-                Abrir o simulador
+                Treinar no simulador
               </Link>
               <Link to="/tutoriais" className="rounded-md border border-white/40 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/10">
                 Começar pelos tutoriais
@@ -74,7 +74,7 @@ finally:
         <div className="mb-10 max-w-2xl">
           <h2 className="font-display text-3xl font-bold tracking-tight md:text-4xl">Tudo em um só lugar</h2>
           <p className="mt-3 text-muted-foreground">
-            Quatro frentes pensadas para quem está aprendendo eletrônica digital com Python.
+            Quatro frentes pensadas para você chegar preparado ao laboratório com a TV Box.
           </p>
         </div>
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
@@ -98,7 +98,7 @@ finally:
           {[
             { n: "7", t: "funções na biblioteca", d: "ligar / desligar / ler pino, esperar, liberar e a base DefnPino." },
             { n: "64", t: "pinos no simulador", d: "Distribuídos em 2 chips GPIO virtuais — exatamente como o hardware real." },
-            { n: "100%", t: "no navegador", d: "Sem instalar nada. Editor Python, placa visual e console integrados." },
+            { n: "100%", t: "no navegador", d: "Treine antes da prática: editor Python, placa virtual e console integrados, sem instalar nada." },
           ].map((s) => (
             <div key={s.t} className="rounded-xl border border-border bg-card p-6 shadow-[var(--shadow-card)]">
               <p className="font-display text-4xl font-extrabold text-primary">{s.n}</p>
