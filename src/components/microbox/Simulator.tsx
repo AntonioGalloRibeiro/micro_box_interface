@@ -29,6 +29,7 @@ export function Simulator({ initialCode, onRunComplete, height = "340px" }: Prop
     reset();
     setRunning(true);
     log("▶ Iniciando execução…", "info");
+    console.log("[Simulator] run start", { codeLen: code.length });
     let ok = true;
     try {
       await runPython(code, {
@@ -36,11 +37,14 @@ export function Simulator({ initialCode, onRunComplete, height = "340px" }: Prop
         shouldStop: () => stopRef.current,
       });
       log("✓ Programa finalizado.", "info");
+      console.log("[Simulator] run finished ok");
     } catch {
       ok = false;
+      console.log("[Simulator] run threw");
     } finally {
       setRunning(false);
       onRunComplete?.(ok);
+      console.log("[Simulator] run complete cleanup");
     }
   }
 
