@@ -82,6 +82,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:site_name", content: "Micro-Box" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { title: "Micro-box Interface" },
+      { property: "og:title", content: "Micro-box Interface" },
+      { name: "twitter:title", content: "Micro-box Interface" },
+      { name: "description", content: "GPIO Playground is an interactive web application for learning and experimenting with GPIOs." },
+      { property: "og:description", content: "GPIO Playground is an interactive web application for learning and experimenting with GPIOs." },
+      { name: "twitter:description", content: "GPIO Playground is an interactive web application for learning and experimenting with GPIOs." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/9be6ad59-e639-4a86-9414-fd6e9cdcc3d7/id-preview-40ee48a4--63a7e192-15f9-4f55-9bfb-473e66518eec.lovable.app-1783026150986.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/9be6ad59-e639-4a86-9414-fd6e9cdcc3d7/id-preview-40ee48a4--63a7e192-15f9-4f55-9bfb-473e66518eec.lovable.app-1783026150986.png" },
     ],
     links: [
       {
