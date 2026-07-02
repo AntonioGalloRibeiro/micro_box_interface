@@ -8,16 +8,39 @@ export const Route = createFileRoute("/tutoriais/$slug")({
     if (!tutorial) throw notFound();
     return { tutorial };
   },
-  head: ({ loaderData }) => ({
-    meta: loaderData
-      ? [
-          { title: `${loaderData.tutorial.titulo} — Tutorial Micro-Box` },
-          { name: "description", content: loaderData.tutorial.resumo },
-          { property: "og:title", content: `${loaderData.tutorial.titulo} — Micro-Box` },
-          { property: "og:description", content: loaderData.tutorial.resumo },
-        ]
-      : [],
-  }),
+  head: ({ params, loaderData }) => {
+    const url = `https://microboxinterface.lovable.app/tutoriais/${params.slug}`;
+    if (!loaderData) return { meta: [] };
+    return {
+      meta: [
+        { title: `${loaderData.tutorial.titulo} — Tutorial Micro-Box` },
+        { name: "description", content: loaderData.tutorial.resumo },
+        { property: "og:title", content: `${loaderData.tutorial.titulo} — Micro-Box` },
+        { property: "og:description", content: loaderData.tutorial.resumo },
+        { property: "og:type", content: "article" },
+        { property: "og:url", content: url },
+      ],
+      links: [{ rel: "canonical", href: url }],
+      scripts: [
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "HowTo",
+            name: loaderData.tutorial.titulo,
+            description: loaderData.tutorial.resumo,
+            inLanguage: "pt-BR",
+            url,
+            step: loaderData.tutorial.passos.map((p, i) => ({
+              "@type": "HowToStep",
+              position: i + 1,
+              text: p.texto,
+            })),
+          }),
+        },
+      ],
+    };
+  },
   component: Page,
 });
 

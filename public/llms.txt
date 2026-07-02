@@ -1,0 +1,13 @@
+# Micro-Box
+
+> Plataforma educacional em PT-BR para aprender GPIO com Python usando a biblioteca Micro-Box em TV Boxes reutilizadas como hardware.
+
+Micro-Box oferece documentação, tutoriais passo a passo, um simulador visual de GPIO no navegador e exercícios com verificação automática, para preparar estudantes antes da prática no hardware real.
+
+## Pages
+
+- [Início](/): Visão geral do projeto Micro-Box.
+- [Documentação](/documentacao): Referência das funções da biblioteca (ligar_pino, desligar_pino, ler_pino, esperar, liberar_pino, liberar_todos, DefnPino).
+- [Tutoriais](/tutoriais): Guias passo a passo (piscar LED, ler botão, sequências).
+- [Simulador](/simulador): Editor Python + placa GPIO virtual (4 chips, 128 pinos).
+- [Exercícios](/exercicios): Desafios curtos com verificação automática.
