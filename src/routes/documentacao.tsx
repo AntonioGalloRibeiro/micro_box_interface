@@ -8,7 +8,9 @@ export const Route = createFileRoute("/documentacao")({
       { name: "description", content: "Referência completa da biblioteca Micro-Box: ligar_pino, desligar_pino, ler_pino, esperar, liberar_pino, liberar_todos e DefnPino." },
       { property: "og:title", content: "Documentação — Micro-Box" },
       { property: "og:description", content: "Referência das funções da biblioteca Micro-Box em português." },
+      { property: "og:url", content: "https://microboxinterface.lovable.app/documentacao" },
     ],
+    links: [{ rel: "canonical", href: "https://microboxinterface.lovable.app/documentacao" }],
   }),
   component: Page,
 });
