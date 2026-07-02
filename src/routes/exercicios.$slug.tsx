@@ -10,16 +10,36 @@ export const Route = createFileRoute("/exercicios/$slug")({
     if (!ex) throw notFound();
     return { ex };
   },
-  head: ({ loaderData }) => ({
-    meta: loaderData
-      ? [
-          { title: `${loaderData.ex.titulo} — Exercício Micro-Box` },
-          { name: "description", content: loaderData.ex.enunciado },
-          { property: "og:title", content: `${loaderData.ex.titulo} — Micro-Box` },
-          { property: "og:description", content: loaderData.ex.enunciado },
-        ]
-      : [],
-  }),
+  head: ({ params, loaderData }) => {
+    const url = `https://microboxinterface.lovable.app/exercicios/${params.slug}`;
+    if (!loaderData) return { meta: [] };
+    return {
+      meta: [
+        { title: `${loaderData.ex.titulo} — Exercício Micro-Box` },
+        { name: "description", content: loaderData.ex.enunciado },
+        { property: "og:title", content: `${loaderData.ex.titulo} — Micro-Box` },
+        { property: "og:description", content: loaderData.ex.enunciado },
+        { property: "og:type", content: "article" },
+        { property: "og:url", content: url },
+      ],
+      links: [{ rel: "canonical", href: url }],
+      scripts: [
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "LearningResource",
+            name: loaderData.ex.titulo,
+            description: loaderData.ex.enunciado,
+            learningResourceType: "Exercise",
+            educationalUse: "Practice",
+            inLanguage: "pt-BR",
+            url,
+          }),
+        },
+      ],
+    };
+  },
   component: Page,
 });
 
