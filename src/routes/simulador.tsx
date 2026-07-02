@@ -30,7 +30,9 @@ export const Route = createFileRoute("/simulador")({
       { name: "description", content: "Editor Python + placa virtual de GPIO. Escreva código com a biblioteca Micro-Box e veja os LEDs reagirem em tempo real." },
       { property: "og:title", content: "Simulador — Micro-Box" },
       { property: "og:description", content: "Editor Python com placa GPIO virtual." },
+      { property: "og:url", content: "https://microboxinterface.lovable.app/simulador" },
     ],
+    links: [{ rel: "canonical", href: "https://microboxinterface.lovable.app/simulador" }],
   }),
   component: Page,
 });
