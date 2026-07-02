@@ -16,7 +16,7 @@ export const funcoes: FuncDoc[] = [
     descricao:
       "Configura o pino como saída (na primeira chamada) e o coloca em nível ATIVO. Em chamadas seguintes, apenas atualiza o valor — o pino já fica em cache, então pode ser usado dentro de loops.",
     parametros: [
-      { nome: "numPino", tipo: "int", descricao: "Número global do pino (0–63). O chip é calculado como numPino // 32 e a porta como numPino % 32." },
+      { nome: "numPino", tipo: "int", descricao: "Número global do pino (0–127, distribuído em 4 chips). O chip é calculado como numPino // 32 e a porta como numPino % 32." },
     ],
     exemplo:
       "from biblioteca_microbox import ligar_pino, esperar\n\nligar_pino(41)\nesperar(1)",
