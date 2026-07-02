@@ -2,11 +2,11 @@ import { motion } from "framer-motion";
 import { useMicroboxStore } from "@/lib/microbox/store";
 
 interface Props {
-  /** Total pin count to render. Default 64 (chip 0 + chip 1). */
+  /** Total pin count to render. Default 128 (chips 0 a 3, 32 linhas cada). */
   pins?: number;
 }
 
-export function Board({ pins = 64 }: Props) {
+export function Board({ pins = 128 }: Props) {
   const pinos = useMicroboxStore((s) => s.pinos);
   const toggle = useMicroboxStore((s) => s.togglePinValue);
   const ensure = useMicroboxStore((s) => s.ensurePin);
