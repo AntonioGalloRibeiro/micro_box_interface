@@ -97,7 +97,7 @@ finally:
         <div className="mx-auto grid w-full max-w-6xl gap-8 px-4 py-16 md:grid-cols-3">
           {[
             { n: "7", t: "funções na biblioteca", d: "ligar / desligar / ler pino, esperar, liberar e a base DefnPino." },
-            { n: "64", t: "pinos no simulador", d: "Distribuídos em 2 chips GPIO virtuais — exatamente como o hardware real." },
+            { n: "128", t: "pinos no simulador", d: "Distribuídos em 4 chips GPIO virtuais (chips 0 a 3, 32 linhas cada) — exatamente como o hardware real." },
             { n: "100%", t: "no navegador", d: "Treine antes da prática: editor Python, placa virtual e console integrados, sem instalar nada." },
           ].map((s) => (
             <div key={s.t} className="rounded-xl border border-border bg-card p-6 shadow-[var(--shadow-card)]">

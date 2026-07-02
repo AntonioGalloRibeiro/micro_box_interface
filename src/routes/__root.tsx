@@ -148,7 +148,10 @@ function SiteHeader() {
     <header className="sticky top-0 z-40 border-b border-border bg-background/85 backdrop-blur supports-[backdrop-filter]:bg-background/70">
       <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between gap-6 px-4">
         <Link to="/" className="flex items-center gap-2 font-display text-lg font-bold tracking-tight">
-          <span className="grid h-8 w-8 place-items-center rounded-lg bg-[var(--gradient-hero)] text-primary-foreground shadow-[var(--shadow-card)]">
+          <span
+            className="grid h-8 w-8 place-items-center rounded-lg text-white shadow-[var(--shadow-card)]"
+            style={{ background: "var(--gradient-hero)" }}
+          >
             μ
           </span>
           <span>Micro-Box</span>
