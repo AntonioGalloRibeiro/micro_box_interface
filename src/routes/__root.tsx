@@ -77,12 +77,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Micro-Box — Aprenda GPIO com Python" },
-      { name: "description", content: "Plataforma educacional para a biblioteca Micro-Box: documentação, tutoriais, simulador visual de GPIO e exercícios interativos." },
       { name: "author", content: "Projeto Micro-Box" },
-      { property: "og:title", content: "Micro-Box — Aprenda GPIO com Python" },
-      { property: "og:description", content: "Aprenda a controlar GPIOs com Python usando a biblioteca Micro-Box. Documentação, tutoriais e simulador visual." },
       { property: "og:type", content: "website" },
+      { property: "og:site_name", content: "Micro-Box" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
     ],
@@ -96,6 +93,24 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap",
+      },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          name: "Micro-Box",
+          url: "https://microboxinterface.lovable.app",
+          description: "Plataforma educacional para a biblioteca Micro-Box: documentação, tutoriais, simulador visual de GPIO e exercícios interativos.",
+          inLanguage: "pt-BR",
+          publisher: {
+            "@type": "Organization",
+            name: "Projeto Micro-Box",
+            url: "https://microboxinterface.lovable.app",
+          },
+        }),
       },
     ],
   }),
