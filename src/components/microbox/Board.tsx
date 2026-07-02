@@ -11,14 +11,25 @@ export function Board({ pins = 128 }: Props) {
   const toggle = useMicroboxStore((s) => s.togglePinValue);
   const ensure = useMicroboxStore((s) => s.ensurePin);
 
+  const chips = Array.from({ length: Math.ceil(pins / 32) }, (_, c) => c);
+
   return (
     <div className="rounded-2xl bg-board p-5 text-board-foreground shadow-[var(--shadow-elevated)]">
       <div className="mb-3 flex items-center justify-between text-xs uppercase tracking-wider opacity-70">
-        <span>Placa virtual Micro-Box</span>
+        <span>Placa virtual Micro-Box · {chips.length} chips GPIO</span>
         <span className="font-mono">{Object.keys(pinos).length} pino(s) ativo(s)</span>
       </div>
-      <div className="grid grid-cols-8 gap-2 sm:grid-cols-16">
-        {Array.from({ length: pins }, (_, i) => {
+      <div className="flex flex-col gap-3">
+        {chips.map((c) => (
+          <div key={c} className="rounded-lg border border-white/10 bg-white/[0.03] p-2">
+            <div className="mb-1.5 flex items-center justify-between px-1 text-[10px] uppercase tracking-wider opacity-60">
+              <span>/dev/gpiochip{c}</span>
+              <span className="font-mono">pinos {c * 32}–{c * 32 + 31}</span>
+            </div>
+            <div className="grid grid-cols-8 gap-1.5 sm:grid-cols-16">
+              {Array.from({ length: 32 }, (_, j) => {
+                const i = c * 32 + j;
+                if (i >= pins) return null;
           const p = pinos[i];
           const modo = p?.modo;
           const ativo = !!p?.ativo;
@@ -70,7 +81,10 @@ export function Board({ pins = 128 }: Props) {
               )}
             </button>
           );
-        })}
+              })}
+            </div>
+          </div>
+        ))}
       </div>
       <div className="mt-4 flex flex-wrap items-center gap-4 text-[11px] text-board-foreground/70">
         <span className="flex items-center gap-1.5"><i className="inline-block h-2 w-2 rounded-full" style={{ background: "var(--led-on)", boxShadow: "var(--shadow-led)" }} /> LED ativo</span>
