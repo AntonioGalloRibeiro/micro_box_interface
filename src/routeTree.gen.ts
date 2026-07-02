@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TutoriaisRouteImport } from './routes/tutoriais'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as SimuladorRouteImport } from './routes/simulador'
 import { Route as ExerciciosRouteImport } from './routes/exercicios'
 import { Route as DocumentacaoRouteImport } from './routes/documentacao'
@@ -22,6 +23,11 @@ import { Route as ExerciciosSlugRouteImport } from './routes/exercicios.$slug'
 const TutoriaisRoute = TutoriaisRouteImport.update({
   id: '/tutoriais',
   path: '/tutoriais',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SimuladorRoute = SimuladorRouteImport.update({
@@ -70,6 +76,7 @@ export interface FileRoutesByFullPath {
   '/documentacao': typeof DocumentacaoRoute
   '/exercicios': typeof ExerciciosRouteWithChildren
   '/simulador': typeof SimuladorRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/tutoriais': typeof TutoriaisRouteWithChildren
   '/exercicios/$slug': typeof ExerciciosSlugRoute
   '/tutoriais/$slug': typeof TutoriaisSlugRoute
@@ -80,6 +87,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/documentacao': typeof DocumentacaoRoute
   '/simulador': typeof SimuladorRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/exercicios/$slug': typeof ExerciciosSlugRoute
   '/tutoriais/$slug': typeof TutoriaisSlugRoute
   '/exercicios': typeof ExerciciosIndexRoute
@@ -91,6 +99,7 @@ export interface FileRoutesById {
   '/documentacao': typeof DocumentacaoRoute
   '/exercicios': typeof ExerciciosRouteWithChildren
   '/simulador': typeof SimuladorRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/tutoriais': typeof TutoriaisRouteWithChildren
   '/exercicios/$slug': typeof ExerciciosSlugRoute
   '/tutoriais/$slug': typeof TutoriaisSlugRoute
@@ -104,6 +113,7 @@ export interface FileRouteTypes {
     | '/documentacao'
     | '/exercicios'
     | '/simulador'
+    | '/sitemap.xml'
     | '/tutoriais'
     | '/exercicios/$slug'
     | '/tutoriais/$slug'
@@ -114,6 +124,7 @@ export interface FileRouteTypes {
     | '/'
     | '/documentacao'
     | '/simulador'
+    | '/sitemap.xml'
     | '/exercicios/$slug'
     | '/tutoriais/$slug'
     | '/exercicios'
@@ -124,6 +135,7 @@ export interface FileRouteTypes {
     | '/documentacao'
     | '/exercicios'
     | '/simulador'
+    | '/sitemap.xml'
     | '/tutoriais'
     | '/exercicios/$slug'
     | '/tutoriais/$slug'
@@ -136,6 +148,7 @@ export interface RootRouteChildren {
   DocumentacaoRoute: typeof DocumentacaoRoute
   ExerciciosRoute: typeof ExerciciosRouteWithChildren
   SimuladorRoute: typeof SimuladorRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TutoriaisRoute: typeof TutoriaisRouteWithChildren
 }
 
@@ -146,6 +159,13 @@ declare module '@tanstack/react-router' {
       path: '/tutoriais'
       fullPath: '/tutoriais'
       preLoaderRoute: typeof TutoriaisRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/simulador': {
@@ -240,6 +260,7 @@ const rootRouteChildren: RootRouteChildren = {
   DocumentacaoRoute: DocumentacaoRoute,
   ExerciciosRoute: ExerciciosRouteWithChildren,
   SimuladorRoute: SimuladorRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   TutoriaisRoute: TutoriaisRouteWithChildren,
 }
 export const routeTree = rootRouteImport
