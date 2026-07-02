@@ -165,7 +165,7 @@ function SiteHeader() {
         <Link to="/" className="flex items-center gap-2 font-display text-lg font-bold tracking-tight">
           <span
             className="grid h-8 w-8 place-items-center rounded-lg text-white shadow-[var(--shadow-card)]"
-            style={{ background: "var(--gradient-hero)" }}
+            style={{ background: "#00BFFF" }}
           >
             μ
           </span>
