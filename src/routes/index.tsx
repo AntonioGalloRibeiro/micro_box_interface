@@ -8,7 +8,9 @@ export const Route = createFileRoute("/")({
       { name: "description", content: "Plataforma educacional Micro-Box: documentação, tutoriais e um simulador visual para aprender a controlar GPIOs com Python." },
       { property: "og:title", content: "Micro-Box — Aprenda GPIO com Python" },
       { property: "og:description", content: "Documentação, tutoriais e simulador para a biblioteca Micro-Box em PT-BR." },
+      { property: "og:url", content: "https://microboxinterface.lovable.app/" },
     ],
+    links: [{ rel: "canonical", href: "https://microboxinterface.lovable.app/" }],
   }),
   component: Index,
 });
