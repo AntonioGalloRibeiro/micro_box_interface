@@ -8,7 +8,9 @@ export const Route = createFileRoute("/tutoriais/")({
       { name: "description", content: "Tutoriais passo a passo para aprender a biblioteca Micro-Box: piscar LED, ler botão, sequências e mais." },
       { property: "og:title", content: "Tutoriais — Micro-Box" },
       { property: "og:description", content: "Aprenda Micro-Box passo a passo." },
+      { property: "og:url", content: "https://microboxinterface.lovable.app/tutoriais" },
     ],
+    links: [{ rel: "canonical", href: "https://microboxinterface.lovable.app/tutoriais" }],
   }),
   component: Page,
 });

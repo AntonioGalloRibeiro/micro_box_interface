@@ -8,7 +8,9 @@ export const Route = createFileRoute("/exercicios/")({
       { name: "description", content: "Desafios com verificação automática para praticar a biblioteca Micro-Box." },
       { property: "og:title", content: "Exercícios — Micro-Box" },
       { property: "og:description", content: "Pratique GPIO com feedback automático." },
+      { property: "og:url", content: "https://microboxinterface.lovable.app/exercicios" },
     ],
+    links: [{ rel: "canonical", href: "https://microboxinterface.lovable.app/exercicios" }],
   }),
   component: Page,
 });
